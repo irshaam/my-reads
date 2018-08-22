@@ -53,13 +53,15 @@ class BooksApp extends Component {
                     })
                     this.setState({searchResult:books})
                 }
+                else {
+                    this.setState({ searchResult: [] })
+                }
             })
-        }else{
-            this.setState({searchResult: []})
         }
     }
     
     render() {
+        const { searchResult } = this.state
         return (
             <div className="App">
             <Route exact path="/" render={()=> (
@@ -78,7 +80,7 @@ class BooksApp extends Component {
                 </div>
             )}/>
              <Route exact path="/search" render={()=> (
-                <Search books={this.state.searchResult} onSearch={this.searchBooks}  onUpdateBook={this.updateBook} />
+                <Search books={searchResult} onSearch={this.searchBooks}  onUpdateBook={this.updateBook} />
             )}/>
             </div>
         )
